@@ -21,6 +21,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.jetpacklayout.ui.theme.JetpackLayoutTheme
+import androidx.compose.material.icons.Icons.Filled
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Share
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,22 +31,76 @@ class MainActivity : ComponentActivity() {
         setContent {
             JetpackLayoutTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    PhotographerCard()
-                }
+//                Surface(color = MaterialTheme.colors.background) {
+//
+//                    Column{
+//                        TopAppBar(
+//                            title = {
+//                                Text(text = "Page title", maxLines = 2)
+//                            },
+//                            navigationIcon = {
+//                                Icon(
+//                                    imageVector = Filled.Share,
+//                                    contentDescription = null
+//                                )
+//                            }
+//                        )
+//                    PhotographerCard()
+                        LayoutsCodelab()
+
+//                    }
+//
+//                }
             }
         }
     }
 }
 
 @Composable
+fun LayoutsCodelab() {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(text = "LayoutsCodelab")
+                },
+                        actions = {
+                    IconButton(onClick = { /* doSomething() */ }) {
+                        Icon(Filled.Favorite, contentDescription = null)
+                    }
+                }
+            )
+        }
+    ) { innerPadding ->
+        BodyContent(Modifier.padding(innerPadding).padding(8.dp))
+    }
+}
+
+@Composable
+fun BodyContent(modifier: Modifier = Modifier) {
+    Column(modifier = modifier) {
+        Text(text = "Hi there!")
+        Text(text = "Thanks for going through the Layouts codelab")
+    }
+}
+
+@Preview
+@Composable
+fun LayoutsCodelabPreview() {
+    JetpackLayoutTheme {
+        LayoutsCodelab()
+    }
+}
+
+@Composable
 fun PhotographerCard(modifier: Modifier = Modifier) {
-    Row(modifier
-        .padding(8.dp)
-        .clip(RoundedCornerShape(4.dp))
-        .background(MaterialTheme.colors.surface)
-        .clickable(onClick = { /* Ignoring onClick */ })
-        .padding(16.dp)
+    Row(
+        modifier
+            .padding(8.dp)
+            .clip(RoundedCornerShape(4.dp))
+            .background(MaterialTheme.colors.surface)
+            .clickable(onClick = { /* Ignoring onClick */ })
+            .padding(16.dp)
     ) {
         Surface(
             modifier = Modifier.size(50.dp),
