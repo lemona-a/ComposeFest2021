@@ -46,5 +46,27 @@ class TodoViewModel : ViewModel() {
     // event: removeItem
     fun removeItem(item: TodoItem) {
         todoItems.remove(item)
+        onEditDone() // don't keep the editor open when removing items
     }
+
+    // event: onEditItemSelected
+    fun onEditItemSelected(item: TodoItem) {
+        currentEditPosition = todoItems.indexOf(item)
+    }
+
+    // event: onEditDone
+    fun onEditDone() {
+        currentEditPosition = -1
+    }
+
+    // event: onEditItemChange
+    fun onEditItemChange(item: TodoItem) {
+        val currentItem = requireNotNull(currentEditItem)
+        require(currentItem.id == item.id) {
+            "You can only change an item with the same id as currentEditItem"
+        }
+
+        todoItems[currentEditPosition] = item
+    }
+
 }
