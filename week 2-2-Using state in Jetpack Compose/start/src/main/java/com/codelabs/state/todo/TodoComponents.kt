@@ -59,6 +59,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.Alignment
 
 /**
  * Draws a row of [TodoIcon] with visibility changes animated.
