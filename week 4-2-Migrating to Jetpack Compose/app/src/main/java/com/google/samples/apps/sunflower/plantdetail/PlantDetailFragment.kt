@@ -22,6 +22,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.material.MaterialTheme
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.app.ShareCompat
 import androidx.core.widget.NestedScrollView
@@ -38,6 +39,11 @@ import com.google.samples.apps.sunflower.databinding.FragmentPlantDetailBinding
 import com.google.samples.apps.sunflower.utilities.InjectorUtils
 import com.google.samples.apps.sunflower.viewmodels.PlantDetailViewModel
 
+
+import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
+import com.google.android.material.composethemeadapter.MdcTheme
 /**
  * A fragment representing a single Plant detail screen.
  */
@@ -94,6 +100,7 @@ class PlantDetailFragment : Fragment() {
                 }
             )
 
+
             toolbar.setNavigationOnClickListener { view ->
                 view.findNavController().navigateUp()
             }
@@ -107,6 +114,10 @@ class PlantDetailFragment : Fragment() {
                     else -> false
                 }
             }
+
+            composeView.setViewCompositionStrategy(
+                ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
+            )
             composeView.setContent {
                 // You're in Compose world!
                 MaterialTheme {
